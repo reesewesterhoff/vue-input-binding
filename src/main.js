@@ -26,6 +26,16 @@ Vue.directive('theme', {
   }
 });
 
+// Filters
+Vue.filter('to-uppercase', function(value) {
+  return value.toUpperCase();
+});
+
+// Filters by only letting 100 characters through
+Vue.filter('snippet', function(value) {
+  return value.slice(0,100) + '...';
+})
+
 new Vue({
   el: '#app',
   render: h => h(App)

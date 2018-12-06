@@ -4,8 +4,9 @@
       <h1>All Blog Articles</h1>
       <!-- cycles through blogs and displays each one in it's own div -->
       <div v-for="blog in blogs" :key="blog.id" class="single-blog">
-          <h3 v-rainbow>Title: {{blog.title}}</h3>
-          <p>Content: {{blog.body}}</p>
+          <!-- need pipe to indicate that there will be a filter -->
+          <h3 v-rainbow>{{blog.title | to-uppercase}}</h3>
+          <p>{{blog.body | snippet}}</p>
           <p>Author: {{blog.userId}}</p>
       </div>
   </div>
