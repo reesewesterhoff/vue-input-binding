@@ -1,7 +1,7 @@
 <template>
     <!-- able to create own custom directives -->
   <div v-theme:column="'narrow'" id="show-blogs">
-      <h1>All Blog Articles</h1>
+      <h1>List Blog Titles</h1>
       <!-- connects to search property -->
       <input type="text" v-model="search" placeholder="Search Blogs" />
       <!-- cycles through blogs and displays each one in it's own div -->
@@ -9,8 +9,6 @@
       <div v-for="blog in filteredBlogs" :key="blog.id" class="single-blog">
           <!-- need pipe to indicate that there will be a filter -->
           <h3 v-rainbow>{{blog.title | to-uppercase}}</h3>
-          <p>{{blog.body | snippet}}</p>
-          <p>Author: {{blog.userId}}</p>
       </div>
   </div>
 </template>
@@ -18,6 +16,7 @@
 <script>
 // import mixin so we can use it here as well as in listBlogs
 import searchMixin from '../mixins/searchMixin';
+
 
 export default {
   data () {
@@ -63,7 +62,6 @@ export default {
     //     }
     //   }
   },
-  // use mixin (reusable code)
   mixins: [searchMixin]
 }
 </script>
