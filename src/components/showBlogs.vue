@@ -44,6 +44,21 @@ export default {
               return blog.title.match(this.search);
           });
       }
+  },
+  filters: {
+      // this is how you would register the filter in the component locally
+    // toUppercase(value){   is the same as the line below, cleaner
+    //   'to-uppercase': function(value){
+    //       return value.toUpperCase();
+    //   }
+  },
+  directives: {
+      // this is how you would register directives locally
+    //   'rainbow': {
+    //     bind(el, binding, vnode) {
+    //     el.style.color = "#" + Math.random().toString().slice(2,8);
+    //     }
+    //   }
   }
 }
 </script>
