@@ -8,7 +8,7 @@
       <!-- cycles through computed property filteredBlogs to see which titles match -->
       <div v-for="blog in filteredBlogs" :key="blog.id" class="single-blog">
           <!-- need pipe to indicate that there will be a filter -->
-          <h3 v-rainbow>{{blog.title | to-uppercase}}</h3>
+          <router-link v-bind:to="'/blog/' + blog.id"><h3 v-rainbow>{{blog.title | to-uppercase}}</h3></router-link>
           <p>{{blog.body | snippet}}</p>
           <p>Author: {{blog.userId}}</p>
       </div>
@@ -68,7 +68,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #show-blogs{
     max-width: 800px;
     margin: 0px auto;
