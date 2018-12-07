@@ -9,8 +9,9 @@
       <div v-for="blog in filteredBlogs" :key="blog.id" class="single-blog">
           <!-- need pipe to indicate that there will be a filter -->
           <router-link v-bind:to="'/blog/' + blog.id"><h3 v-rainbow>{{blog.title | to-uppercase}}</h3></router-link>
-          <p>{{blog.body | snippet}}</p>
-          <p>Author: {{blog.userId}}</p>
+          <!-- blog.content for us, not blog.body like before -->
+          <p>{{blog.content | snippet}}</p>
+          <p>Author: {{blog.author}}</p>
       </div>
   </div>
 </template>
@@ -29,14 +30,25 @@ export default {
   // when the component is created, go and get blog posts 1-10
   // set the property blogs = the results
   created() {
-      this.$http.get('http://jsonplaceholder.typicode.com/posts')
+      // get whatever is in my firebase database
+      this.$http.get('https://vue-blog-1dce8.firebaseio.com/posts.json')
       .then(response => {
-          console.log(response);
-          this.blogs = response.body.slice(0,10);
-      }).catch(error => {
-          console.log(error);
-          alert('Error getting blog posts.')
-      });
+          // return function
+          return response.json();
+          // second .then to wait for response.json() promise to complete
+      }).then(response2 => {
+          // temporary array
+          let blogsArray = [];
+          // cycle through .then of json()
+          for(let key in response2) {
+              // give each object an id property
+              response2[key].id = key;
+              // push each object into temporary array
+              blogsArray.push(response2[key]);
+          }
+            // set temporary array = to blogs array
+            this.blogs = blogsArray;    
+      })
   },
   computed: {
     //   filteredBlogs: function() {
