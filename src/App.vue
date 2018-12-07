@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+    <!-- needed for showing components dynamically according to url -->
+    <router-view></router-view>
     <!-- <add-blog></add-blog> -->
-    <show-blogs></show-blogs>
-    <list-blogs></list-blogs>
+    <!-- <show-blogs></show-blogs>
+    <list-blogs></list-blogs> -->
   </div>
 </template>
 
