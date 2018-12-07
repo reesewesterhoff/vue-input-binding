@@ -67,11 +67,8 @@ export default {
   methods: {
     post: function() {
       this.$http
-        .post("http://jsonplaceholder.typicode.com/posts", {
-          title: this.blog.title,
-          body: this.blog.content,
-          userId: 1
-        })
+      // change post url to firebase database, send entire blog object
+        .post("https://vue-blog-1dce8.firebaseio.com/posts.json", this.blog)
         .then(response => {
           console.log(response);
           this.submitted = true;
