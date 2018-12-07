@@ -12,7 +12,9 @@ Vue.use(VueRouter);
 // define router constant as an instance of VueRouter
 const router = new VueRouter({
   // use routes defined in routes.js
-  routes: Routes
+  routes: Routes,
+  // this makes it so there is no hash needed before the /url
+  // mode: 'history'
 })
 
 // Custom directives
